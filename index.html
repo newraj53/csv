@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formatix - Professional CSV Cleaner, CSV Viewer, and converter tool. Convert JSON to CSV, XML to CSV, Excel to CSV, PDF to CSV, and text to CSV. Free, secure, client-side processing.">
+    <meta name="keywords" content="csv cleaner, csv viewer, json to csv converter, xml to csv converter, excel to csv converter, pdf to csv converter, text to csv converter, csv formatter">
+    <title>Formatix - CSV Cleaner, Viewer & Converter | Free Online Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <i class="fas fa-file-csv"></i>
+                    <span>Formatix</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-animation">
+            <div class="floating-icon" style="--delay: 0s; --x: 10%; --y: 20%;">
+                <i class="fas fa-file-csv"></i>
+            </div>
+            <div class="floating-icon" style="--delay: 1s; --x: 80%; --y: 30%;">
+                <i class="fas fa-file-code"></i>
+            </div>
+            <div class="floating-icon" style="--delay: 2s; --x: 15%; --y: 70%;">
+                <i class="fas fa-file-excel"></i>
+            </div>
+            <div class="floating-icon" style="--delay: 1.5s; --x: 85%; --y: 65%;">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="floating-icon" style="--delay: 0.5s; --x: 50%; --y: 15%;">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-content reveal-on-scroll">
+                <h1>Clean, Format & Convert Your CSV Files</h1>
+                <p class="hero-subtitle">Professional CSV cleaner and viewer with powerful conversion tools. Process files securely in your browser - no uploads, no servers, 100% private.</p>
+                <div class="hero-buttons">
+                    <a href="#tools" class="btn btn-primary">Try It Free</a>
+                    <a href="about.html" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tools-section">
+        <div class="container">
+            <div class="section-header reveal-on-scroll">
+                <h2>Powerful CSV Tools</h2>
+                <p>All processing happens in your browser - your data never leaves your device</p>
+            </div>
+
+            <!-- Tool Tabs -->
+            <div class="tool-tabs reveal-on-scroll">
+                <button class="tool-tab active" data-tool="cleaner">
+                    <i class="fas fa-broom"></i>
+                    <span>CSV Cleaner</span>
+                </button>
+                <button class="tool-tab" data-tool="viewer">
+                    <i class="fas fa-table"></i>
+                    <span>CSV Viewer</span>
+                </button>
+                <button class="tool-tab" data-tool="converter">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Converters</span>
+                </button>
+            </div>
+
+            <!-- CSV Cleaner Tool -->
+            <div class="tool-content active" id="cleaner-tool">
+                <div class="tool-panel reveal-on-scroll">
+                    <h3>CSV Cleaner</h3>
+                    <p>Remove empty rows and columns, trim whitespace, and normalize delimiters</p>
+                    
+                    <div class="upload-area" id="cleanerUpload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your CSV file here or click to browse</p>
+                        <input type="file" id="cleanerFileInput" accept=".csv" hidden>
+                    </div>
+
+                    <div class="tool-options">
+                        <label>
+                            <input type="checkbox" id="removeEmptyRows" checked>
+                            Remove empty rows
+                        </label>
+                        <label>
+                            <input type="checkbox" id="removeEmptyColumns" checked>
+                            Remove empty columns
+                        </label>
+                        <label>
+                            <input type="checkbox" id="trimWhitespace" checked>
+                            Trim whitespace
+                        </label>
+                        <label>
+                            <span>Output delimiter:</span>
+                            <select id="outputDelimiter">
+                                <option value=",">Comma (,)</option>
+                                <option value=";">Semicolon (;)</option>
+                                <option value="\t">Tab</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="tool-actions">
+                        <button class="btn btn-primary" id="cleanBtn" disabled>
+                            <i class="fas fa-broom"></i> Clean CSV
+                        </button>
+                        <button class="btn btn-secondary" id="downloadCleanedBtn" disabled>
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+
+                    <div id="cleanerResult" class="result-area" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- CSV Viewer Tool -->
+            <div class="tool-content" id="viewer-tool">
+                <div class="tool-panel reveal-on-scroll">
+                    <h3>CSV Viewer</h3>
+                    <p>View and analyze your CSV files with a clean, scrollable table interface</p>
+                    
+                    <div class="upload-area" id="viewerUpload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your CSV file here or click to browse</p>
+                        <input type="file" id="viewerFileInput" accept=".csv" hidden>
+                    </div>
+
+                    <div class="tool-options">
+                        <label>
+                            <span>Delimiter:</span>
+                            <select id="viewerDelimiter">
+                                <option value="auto">Auto-detect</option>
+                                <option value=",">Comma (,)</option>
+                                <option value=";">Semicolon (;)</option>
+                                <option value="\t">Tab</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div id="viewerResult" class="result-area" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Converter Tool -->
+            <div class="tool-content" id="converter-tool">
+                <div class="tool-panel reveal-on-scroll">
+                    <h3>File to CSV Converter</h3>
+                    <p>Convert JSON, XML, Excel, PDF, and text files to CSV format</p>
+                    
+                    <div class="converter-type-select">
+                        <label>
+                            <span>Convert from:</span>
+                            <select id="converterType">
+                                <option value="json">JSON to CSV</option>
+                                <option value="xml">XML to CSV</option>
+                                <option value="excel">Excel to CSV</option>
+                                <option value="pdf">PDF to CSV</option>
+                                <option value="text">Text to CSV</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="upload-area" id="converterUpload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your file here or click to browse</p>
+                        <input type="file" id="converterFileInput" hidden>
+                    </div>
+
+                    <div class="tool-actions">
+                        <button class="btn btn-primary" id="convertBtn" disabled>
+                            <i class="fas fa-exchange-alt"></i> Convert to CSV
+                        </button>
+                        <button class="btn btn-secondary" id="downloadConvertedBtn" disabled>
+                            <i class="fas fa-download"></i> Download CSV
+                        </button>
+                    </div>
+
+                    <div id="converterResult" class="result-area" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header reveal-on-scroll">
+                <h2>Why Choose Formatix?</h2>
+                <p>Professional-grade CSV tools with privacy and performance in mind</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card reveal-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>100% Private</h3>
+                    <p>All processing happens in your browser. Your files never leave your device or touch our servers.</p>
+                </div>
+
+                <div class="feature-card reveal-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Client-side processing means instant results. No waiting for uploads or server processing.</p>
+                </div>
+
+                <div class="feature-card reveal-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Powerful Cleaning</h3>
+                    <p>Remove empty rows and columns, trim whitespace, normalize delimiters, and handle malformed CSV files.</p>
+                </div>
+
+                <div class="feature-card reveal-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Smart CSV Viewer</h3>
+                    <p>Preview CSV files with a clean, scrollable table interface. Perfect for large datasets.</p>
+                </div>
+
+                <div class="feature-card reveal-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Multi-Format Conversion</h3>
+                    <p>Convert JSON, XML, Excel, PDF, and text files to CSV format with ease.</p>
+                </div>
+
+                <div class="feature-card reveal-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Works Everywhere</h3>
+                    <p>Fully responsive design works on desktop, tablet, and mobile devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Content Section -->
+    <section class="seo-content">
+        <div class="container">
+            <div class="seo-grid">
+                <div class="seo-block reveal-on-scroll">
+                    <h2>Professional CSV Cleaner</h2>
+                    <p>Our <strong>CSV cleaner</strong> helps you maintain data quality by automatically removing empty rows and columns, trimming unnecessary whitespace, and normalizing delimiters. Whether you're working with data exports, spreadsheets, or database dumps, Formatix ensures your CSV files are clean and ready for analysis.</p>
+                </div>
+
+                <div class="seo-block reveal-on-scroll">
+                    <h2>Advanced CSV Viewer</h2>
+                    <p>The Formatix <strong>CSV viewer</strong> provides a powerful, user-friendly interface for previewing and analyzing CSV files. View large datasets with smooth scrolling, automatic column alignment, and intelligent delimiter detection. Perfect for data analysts, developers, and anyone working with comma-separated values.</p>
+                </div>
+
+                <div class="seo-block reveal-on-scroll">
+                    <h3>JSON to CSV Converter</h3>
+                    <p>Convert JSON data to CSV format instantly with our <strong>JSON to CSV converter</strong>. Supports nested objects, arrays, and complex JSON structures. Ideal for API responses, configuration files, and data migration tasks.</p>
+                </div>
+
+                <div class="seo-block reveal-on-scroll">
+                    <h3>XML to CSV Converter</h3>
+                    <p>Transform XML documents into CSV files with our <strong>XML to CSV converter</strong>. Handles XML schemas, nested elements, and attributes seamlessly. Perfect for data integration and legacy system migration.</p>
+                </div>
+
+                <div class="seo-block reveal-on-scroll">
+                    <h3>Excel to CSV Converter</h3>
+                    <p>Our <strong>Excel to CSV converter</strong> supports both XLS and XLSX formats. Convert spreadsheets while preserving data integrity, formulas, and formatting. Essential for cross-platform data sharing.</p>
+                </div>
+
+                <div class="seo-block reveal-on-scroll">
+                    <h3>PDF to CSV Converter</h3>
+                    <p>Extract tabular data from PDF documents with our <strong>PDF to CSV converter</strong>. Best-effort parsing handles various PDF formats and layouts. Great for converting reports, invoices, and statements.</p>
+                </div>
+
+                <div class="seo-block reveal-on-scroll">
+                    <h3>Text to CSV Converter</h3>
+                    <p>Convert plain text files to CSV format using our <strong>text to CSV converter</strong>. Supports custom delimiters, tab-separated values, and fixed-width formats. Perfect for log files and legacy data.</p>
+                </div>
+
+                <div class="seo-block reveal-on-scroll">
+                    <h2>Who Uses Formatix?</h2>
+                    <p>Formatix is trusted by developers, data analysts, students, and businesses worldwide for CSV cleaning, viewing, and conversion tasks. Our tools are designed for professionals who value privacy, performance, and reliability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-file-csv"></i>
+                        <span>Formatix</span>
+                    </div>
+                    <p>Professional CSV tools for cleaning, viewing, and converting your data files. 100% client-side processing for maximum privacy.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="index.html#tools">CSV Cleaner</a></li>
+                        <li><a href="index.html#tools">CSV Viewer</a></li>
+                        <li><a href="index.html#tools">JSON to CSV</a></li>
+                        <li><a href="index.html#tools">XML to CSV</a></li>
+                        <li><a href="index.html#tools">Excel to CSV</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">API Docs</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Formatix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="js/csv-processor.js"></script>
+    <script src="js/converters.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
